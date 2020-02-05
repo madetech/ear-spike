@@ -10,6 +10,7 @@ dependencies {
   // The following dependencies will be the ear modules and
   // will be placed in the ear root
   deploy project(path: ':myejb', configuration: 'archives')
+  earlib group: 'log4j', name: 'log4j', version: '1.2.15', ext: 'jar'
 }
 
 ear {
