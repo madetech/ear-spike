@@ -1,9 +1,13 @@
 import javax.ejb.*;
+import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Logger;
+
+import java.io.PrintStream;
 
 @MessageDriven(name = "something", activationConfig = {
 //  @ActivationConfigProperty(propertyName = "destination", propertyValue = "JMS/HearingOutcomeInputActivationSpec"),
@@ -14,7 +18,7 @@ public class SomethingHilarious implements MessageDrivenBean, MessageListener {
   final static Logger logger = Logger.getLogger(SomethingHilarious.class);
 
   public SomethingHilarious() {
-    logger.addAppender(new ConsoleAppender());
+    BasicConfigurator.configure();
     logger.error("Oh NOOOO!");
   }
 
@@ -31,6 +35,11 @@ public class SomethingHilarious implements MessageDrivenBean, MessageListener {
   @Override
   public void onMessage(Message message) {
     logger.error("Oh DEAR!");
+    try {
+      logger.info(message.getBody(String.class));
+    } catch (JMSException e) {
+      e.printStackTrace();
+    }
 
   }
 }
