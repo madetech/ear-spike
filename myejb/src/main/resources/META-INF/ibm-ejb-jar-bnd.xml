@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ejb-jar-bnd>
   <message-driven name="something">
-    <jca-adapter activation-spec-binding-name="JMS/HearingOutcomeInputActivationSpec"
-                 destination-binding-name= "JMS/HearingOutcomeInputQueue"/>
+    <jca-adapter activation-spec-binding-name="JMS/CourtResultInputActivationSpec"
+                 destination-binding-name= "JMS/CourtResultInputQueue"/>
   </message-driven>
 </ejb-jar-bnd>
